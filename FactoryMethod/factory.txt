@@ -1,4 +1,4 @@
-팩토리 메서드 패턴
+﻿팩토리 메서드 패턴
 
 학습 목표
     -팩토리 메서드 패턴에서 템플릿 메서드 패턴의 사용됨을 안다.
@@ -59,3 +59,8 @@ createProduct() : item
 또, create알고리즘이 변하여 모든 item에 적용해야할 때도 factory메서드에 있는
 템플릿 메서드 패턴이 적용된 부분만 변경하면 모두 다 적용되기 때문에 좋다.
 구조와 구현의 분리가 핵심이다.
+
+인터넷 정의:
+A Factory Pattern or Factory Method Pattern says that just define an interface or abstract class for creating an object but let the subclasses decide which class to instantiate. In other words, subclasses are responsible to create the instance of the class.
+
+The Factory Method Pattern is also known as Virtual Constructor.
