@@ -1,0 +1,71 @@
+데코레이터 패턴
+    동적으로 책임 추가가 필요할 때 데코레이터 패턴을 사용할 수 있다.
+키워드
+    동적, 책임 추가(책임은 해야할 일을 말한다.)
+
+기본 설계
+    component
+        실질적인 인스턴스를 컨트롤하는 역할
+        다른 말로, decorator와 component들을 컨트롤 하는 부분
+        method 부분이 책임(의무) 부분이다.
+
+    ConcreteCompnent
+        실질적인 인스턴스의 부분이며, component가 컨트롤하는 부분이다.
+
+    Decorator
+        compnent와 concretecomponent를 동일 시하도록 한다
+        다시 말해, decorator는 component가 될 수 있고, compnent를 가지고 있는 모양새이다.
+
+    Concrete Decorator
+        실질적인 장식 인스턴스 및 정의이며 추가된 책임의 주체 부분이다.
+        decorator가 추가된 책임을 가지고 있는데, 그 부분이 method부분이고, 구현은 concreteDecorator에서 구현되어 있다.
+        addMethod는 concrete decorator가 구현에 사용하는 것들이다.
+
+정리,
+    component가 있고, 이 component를 구현하는 두 개의 객체(클래스)
+    ConcreteComponent와 Decorator가 있다.
+    ConcreteComponent는 component 구체화
+    Decorator implements 하긴하지만, 기능 구현보다는 equaliting(동일 시 기능) 위해 implemnets한 것이다.
+    decorator는 component지만, decorator로 component를 가질 수 있다.
+    즉, decorator로 component를 감쌀 수 있다는 것이다.
+    ConcreteDecorator는 Decorator를 implemnets 하면서 일반화하는 기능을 한다.
+    또, 추가된 책임을 구현한다(method 부분)
+
+예제 - 커피 제조 방법
+-에스프레소 : 커피의 기본
+
+아메리카노 : 에스프레소 + 물
+카페라떼 : 에스프레소 + 스팀 밀크
+헤이즐넛 : 아메리카노 + 헤이즐넛 시럽
+카페모카 : 카페라떼 초콜릿
+캬라멜 마끼아또 : 카페라떼 + 캬라멜 시럽
+
+커피의 값을 측정하는 프로그램을 만들어보자
+
+image에 사진이 있다.
+
+1, 커피 값을 산출하는 Beverage
+    이것이 실질적으로 책임지어야 하는 것은 Base(가격이 추가되는 것이고)
+    추가되는 어떤 것이 있다는 것이 AbstAdding,
+    추가 재료들을 구현한 Espresso 클래스
+
+이를 통해 금액 추정 프로그램을 구현해 보자
+
+요약:
+component라는 책임(기능 - 의무)를 가진 객체가 있다면
+이 객체의 실질적인 기능은 concrete component에서 구체화를 한다.
+(ex, 인간(component) , 먹는다(의무-책임) -> 먹는 것을 구체화 concrete component)
+그리고 decorator가 component를 구체화하는 데, 이는 동일시를 위해서 하는 것이다.
+즉 decorator가 마치 component 인양 기능을 하는 것이다.
+기능을 하기 위해서 맴버 변수로 component를 가진다.
+그리고 생성자로 concrete component를 받아서 기능을 하도록 한다.
+여기서, decorator에도 concrete decorator가 존재한다. 실질적인 기능 역할을 하는데, concrete component에 추가적인 기능을 하는 것이다.
+즉, strategy 패턴과 달리 decorator 패턴은 기능을 바꾸는 것이 아니라, 기존 기능에 기능을 추가하는 것이다.
+그리고 이를 가능하도록 decorator를 두고, concrete decorator가 기본적인 책임(의무)를 받아 동적으로 바꾸어주는 것이다.
+concrete decorator은 decorator를 상속하고, 생성자로 component를 받게 된다.
+
+실질적으로 사용하게 되면, 기본적인 임무를 하는 concrete component가 concrete decorator로 들어오고
+이를 decorator가 받아서, 마치 자신이 component인양 매서드를 실행한다.
+여기에 concrete decorator가 가진 추가적인 메서드를 실행해주면 동적으로 책임(기능)이 바뀌는 것이다.
+
+
